@@ -1,0 +1,30 @@
+ts                wf          kind                    summary                                                               
+----------------  ----------  ----------------------  ----------------------------------------------------------------------
+2027-01-04T10:00  nw_renewal  experiment_skipped      voice test would need 5.7 days per decision (max 5)                   
+2027-01-04T11:00  ks_cancel   proposed                explore voices: keep V1 at 40%, split the rest                        
+2027-01-04T13:00  ks_cancel   applied                 apr_00001: {"workflow_id":"ks_cancel","version":2,"changed_dims":["voi
+2027-01-04T13:00  ks_cancel   observed_config_change  config v2 by controller_approved: voice                               
+2027-01-06T12:00  ks_cancel   did_flagged             D2                                                                    
+2027-01-06T12:00  ks_cancel   auto_applied            did-rotate-2027-01-06T12: {"workflow_id":"ks_cancel","version":3,"chan
+2027-01-06T12:00  ks_cancel   observed_config_change  config v3 by controller_auto: caller_id                               
+2027-01-06T13:00  ks_cancel   auto_applied            did-rotate-2027-01-06T13: {"workflow_id":"ks_cancel","version":4,"chan
+2027-01-06T13:00  ks_cancel   observed_config_change  config v4 by controller_auto: caller_id                               
+2027-01-06T14:00  ks_cancel   auto_applied            did-rotate-2027-01-06T14: {"workflow_id":"ks_cancel","version":5,"chan
+2027-01-06T14:00  ks_cancel   observed_config_change  config v5 by controller_auto: caller_id                               
+2027-01-07T11:30  ks_cancel   observed_config_change  config v6 by supervisor: prompt_version                               
+2027-01-07T13:00  ks_cancel   incident_detected       P2 2027-01-07 hallucination spike                                     
+2027-01-07T13:00  ks_cancel   fix_validated           P2 2027-01-07 -> P1 pass=0.986                                        
+2027-01-07T13:00  ks_cancel   proposed                switch prompt P2 -> P1 (hallucination incident)                       
+2027-01-07T15:00  ks_cancel   applied                 apr_00002: {"workflow_id":"ks_cancel","version":7,"changed_dims":["pro
+2027-01-07T15:00  ks_cancel   observed_config_change  config v7 by controller_approved: prompt_version                      
+2027-01-08T14:00  ks_cancel   did_flagged             D1                                                                    
+2027-01-08T14:00  ks_cancel   auto_applied            did-rotate-2027-01-08T14: {"workflow_id":"ks_cancel","version":8,"chan
+2027-01-08T14:00  ks_cancel   observed_config_change  config v8 by controller_auto: caller_id                               
+2027-01-08T15:00  ks_cancel   auto_applied            did-rotate-2027-01-08T15: {"workflow_id":"ks_cancel","version":9,"chan
+2027-01-08T15:00  ks_cancel   observed_config_change  config v9 by controller_auto: caller_id                               
+2027-01-08T16:00  ks_cancel   auto_applied            did-rotate-2027-01-08T16: {"workflow_id":"ks_cancel","version":10,"cha
+2027-01-08T16:00  ks_cancel   observed_config_change  config v10 by controller_auto: caller_id                              
+2027-01-09T15:00  nw_renewal  observed_config_change  config v2 by supervisor: voice                                        
+2027-01-13T11:00  ks_cancel   proposed                stop testing voice V4: worse than V1                                  
+2027-01-13T13:00  ks_cancel   applied                 apr_00003: {"workflow_id":"ks_cancel","version":11,"changed_dims":["vo
+2027-01-13T13:00  ks_cancel   observed_config_change  config v11 by controller_approved: voice                              

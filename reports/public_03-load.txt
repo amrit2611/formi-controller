@@ -1,0 +1,9 @@
+caught up to chunk 22, D0 = 2027-01-04
+day done 2027-01-05 {'events': 840028, 'wall_seconds': 14.16, 'events_per_sec': 59338, 'credits_remaining': 400.0, 'open_proposals': 0}
+day done 2027-01-06 {'events': 840012, 'wall_seconds': 13.77, 'events_per_sec': 60989, 'credits_remaining': 400.0, 'open_proposals': 0}
+day done 2027-01-07 {'events': 840022, 'wall_seconds': 13.59, 'events_per_sec': 61816, 'credits_remaining': 400.0, 'open_proposals': 0}
+day done 2027-01-08 {'events': 840012, 'wall_seconds': 13.94, 'events_per_sec': 60260, 'credits_remaining': 400.0, 'open_proposals': 0}
+day done 2027-01-09 {'events': 840022, 'wall_seconds': 14.01, 'events_per_sec': 59965, 'credits_remaining': 400.0, 'open_proposals': 0}
+finished: {'scenario': 'public_03_load', 'sim_minute': 7200, 'ts': '2027-01-09T00:00:00+05:30', 'end_minute': 7200, 'finished': True, 'tick_minutes': 15, 'credits_remaining': 400.0, 'chunks': 88, 'last_event_id': 9737475}
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 1:45.99
+	Maximum resident set size (kbytes): 2421476
