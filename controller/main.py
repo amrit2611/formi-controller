@@ -19,6 +19,7 @@ STEP_MINUTES = 60          # how far each POST /sim/advance moves the world
 ALPHA = 0.05               # family-wise false-winner rate we accept per decision
 MIN_EFFECT = 0.06          # smallest engagement lift worth detecting (6 points)
 EXPLORE_CONTROL = 0.4      # share the current voice keeps while challengers are tested
+MAX_EXPERIMENT_DAYS = 5    # skip an experiment that cannot reach its sample size in this many days
 INCIDENT_Z = 3.0           # hallucination alarm: today's rate vs history, one-sided
 INCIDENT_MIN_CONNECTED = 150
 DID_Z = 3.0                # caller-ID alarm: this DID's pickup vs the other live DIDs today
@@ -342,6 +343,20 @@ def run_voice_experiment(client, store, ts, meta, d0):
         others = [v for v in meta["options"]["voice"] if v != control]
         new_alloc = {control: EXPLORE_CONTROL, **{v: (1 - EXPLORE_CONTROL) / len(others) for v in others}}
         hist = store.totals(wf, "voice", "0000", d0)
+        # Feasibility: only explore if every challenger can reach the minimum sample within MAX_EXPERIMENT_DAYS.
+        days = store.db.execute("SELECT COUNT(DISTINCT day) FROM stats WHERE workflow_id = ? AND day < ?",
+                                (wf, d0)).fetchone()[0] or 1
+        conn_per_day = sum(t["connected"] for t in hist.values()) / days
+        eng = rate(sum(t["engaged"] for t in hist.values()), sum(t["connected"] for t in hist.values()))
+        need = min_sample(eng or 0.3, MIN_EFFECT)
+        days_needed = need / max(1, conn_per_day * (1 - EXPLORE_CONTROL) / len(others))
+        if days_needed > MAX_EXPERIMENT_DAYS:
+            if not store.already_logged(wf, "experiment_skipped"):
+                store.log(ts, wf, "experiment_skipped",
+                          f"voice test would need {days_needed:.1f} days per decision (max {MAX_EXPERIMENT_DAYS})",
+                          {"connected_per_day": round(conn_per_day), "min_connected_per_arm": need,
+                           "challengers": others})
+            return
         evidence = {"rationale": f"history only ever used {control}; test {len(others)} other voices on "
                                  f"{1 - EXPLORE_CONTROL:.0%} of traffic, keep {control} as control",
                     "history_by_voice": hist}
